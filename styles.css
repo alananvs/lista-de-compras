@@ -147,3 +147,61 @@ ul {
 .container-lista {
     width: 100%;
 }
+@media (max-width: 600px) {
+  body {
+    padding: 16px;
+    min-height: 100vh;
+  }
+
+  .card, .main {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 16px 6px;
+    margin-top: 24px;
+    border-radius: 12px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+    text-align: center;
+  }
+
+  .input-item {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px 12px;
+  }
+
+  .button-item {
+    font-size: 1rem;
+    padding: 10px 12px;
+  }
+
+  .container-lista {
+    width: 100%;
+  }
+
+  form {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .lista-item-container {
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.4rem;
+  }
+  .item-lista-button {
+    font-size: 1.2rem;
+  }
+  .texto-data {
+    font-size: 0.8rem;
+  }
+}

@@ -18,4 +18,11 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
+const select = document.getElementById("tipo-lista");
+const h2 = document.getElementById("titulo-lista");
+
+select.addEventListener("change", function() {
+    h2.textContent = select.options[select.selectedIndex].text;
+});
+
 verificarListaVazia(listaDeCompras);

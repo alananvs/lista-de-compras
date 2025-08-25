@@ -24,7 +24,7 @@ body {
     padding: 128px;
 }
 
-.main {
+main {
     background-color: var(--neutro);
     margin-top: 64px;
     display: flex;

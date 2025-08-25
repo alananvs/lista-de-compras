@@ -13,17 +13,15 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
 
+  <h1 class="">Escolha o tipo de lista</h1>
+  <select id="tipo-lista">
+    <option value="compras">Lista de Compras</option>
+    <option value="compromissos">Compromissos</option>
+    <option value="atividades">Atividades</option>
+  </select>
+
   <body>
-    <div class="card" style="
-    background-color: var(--neutro);
-    margin-top: 64px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 1000px;
-    padding: 56px;
-    align-items: center;
-    border-radius: 16px">
+    <div class="card">
       <img src="./img/bag.png" alt="sacola de compras"/>
       <form>
         <input
@@ -36,7 +34,7 @@
       </form>
 
       <div class="container-lista">
-        <h2>Lista de compras</h2>
+        <h2 id="titulo-lista">Lista de compras</h2>
         <hr/>
         <ul id="lista-de-compras"></ul>
         <p class="menssagem-lista-vazia">Não há nenhum item na lista no momento</p>

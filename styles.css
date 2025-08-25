@@ -8,6 +8,7 @@
     --cor-primaria: #F55B64;
     --cor-secundaria: #C2373F;
     --neutro: #F9F9F9;
+    --neutro2: #fdf0ff;
     --preto: #131730;
     --fonte-titulo: "Krona One", sans-serif;
     --fonte-texto: 'Numans', sans-serif;
@@ -15,7 +16,7 @@
 }
 
 body {
-    background: var(--degrade-azul);
+    background: var(--neutro);
     background-repeat: no-repeat;
     height: 100vh;
     display: flex;
@@ -25,15 +26,18 @@ body {
 }
 
 .card {
-    background-color: var(--neutro);
+    background-color: var(--neutro2);
     margin-top: 64px;
     display: flex;
     flex-direction: column;
     gap: 24px;
     width: 1000px;
-    padding: 56px;
     align-items: center;
-    border-radius: 16px;
+    padding: 30px;
+    margin-top: 24px;
+    border-radius: 12px;
+    border: 2px solid rgb(255, 239, 239);
+    box-shadow: 8px 8px 0 0 rgb(254, 219, 251), 8px 8px 0 4px rgb(255, 239, 239);
 }
 
 h2 {
@@ -42,6 +46,58 @@ h2 {
     font-size: 20px;
     font-weight: 400;
     line-height: 32px;
+}
+
+h1 {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-secundaria);
+    font-size: 20px;
+    margin: 30px;
+    text-align: center;
+    letter-spacing: .5px;
+    text-shadow: 2px 2px 0 var(--neutro2), 4px 4px 0 #fedbfb80;
+}
+
+select {
+    font-family: var(--fonte-texto);
+    font-size: 1.07rem;
+    color: var(--preto);
+    background: var(--neutro2);
+    border: 2px solid var(--cor-primaria);
+    border-radius: 16px;
+    padding: 10px 24px 10px 10px;
+    margin-bottom: 28px;
+    outline: none;
+    box-shadow: 2px 2px 0 0 #fedbfb80;
+    cursor: pointer;
+    transition: border-color .3s, box-shadow .3s;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+}
+select:focus, select:hover {
+    border-color: var(--cor-secundaria);
+    box-shadow: 4px 4px 0 0 #ffc4e1a6;
+}
+
+option {
+    background: var(--neutro2);
+    color: var(--cor-secundaria);
+    font-family: var(--fonte-texto);
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+select::after {
+    content: "▼";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cor-primaria);
+    pointer-events: none;
+    font-size: 1.1em;
 }
 
 hr {
@@ -97,7 +153,7 @@ form {
     display: flex;
     gap: 8px;
 }
-x
+
 ul {
     list-style-type: none;
 }
@@ -153,13 +209,15 @@ ul {
     min-height: 100vh;
   }
 
-  .card, .main {
+  .card {
     width: 100%;
     min-width: 0;
     max-width: 100%;
-    padding: 16px 6px;
+    padding: 30px 30px;
     margin-top: 24px;
     border-radius: 12px;
+    border: 2px solid rgb(255, 239, 239);
+    box-shadow: 8px 8px 0 0 rgb(254, 219, 251), 8px 8px 0 4px rgb(255, 239, 239);
   }
 
   h2 {
@@ -189,9 +247,11 @@ ul {
   }
 
   .lista-item-container {
-    flex-direction: column;
-    gap: 2px;
-    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   p {

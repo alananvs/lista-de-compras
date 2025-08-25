@@ -18,23 +18,20 @@ body {
     background: var(--degrade-azul);
     background-repeat: no-repeat;
     height: 100vh;
-
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 128px;
 }
 
-main {
+.main {
     background-color: var(--neutro);
     margin-top: 64px;
-
     display: flex;
     flex-direction: column;
     gap: 24px;
-
-    width: 440px;
+    width: 1000px;
     padding: 56px;
-
     align-items: center;
     border-radius: 16px;
 }

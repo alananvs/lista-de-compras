@@ -1,65 +1,72 @@
-import gerarDiaDaSemana from "./gerarDiaDaSemana.js";
-// IMPORTANTE: importe a função de verificação para atualização ao excluir
-import verificarListaVazia from "./verificarListaVazia.js";
+export function criarItemDaLista(itemObj, indice, listaArray, salvarListaNoLocalStorage, renderizarListaCompleta) {
+    const li = document.createElement("li");
 
-const inputItem = document.getElementById("input-item");
-const listaDeCompras = document.getElementById("lista-de-compras"); // para usar no botão excluir
-let contador = 0;
+    // Container geral (flex)
+    const container = document.createElement("div");
+    container.classList.add("lista-item-container");
 
-export function criarItemDaLista() {
-    if (inputItem.value === "") {
-        alert("Por favor, insira um item!");
-        return;
-    }
+    // Container da esquerda (checkbox + texto)
+    const leftContainer = document.createElement("div");
+    leftContainer.classList.add("left-container"); // NOVO
 
-    const itemDaLista = document.createElement("li");
-    const containerItemDaLista = document.createElement("div");
-    containerItemDaLista.classList.add("lista-item-container");
-
+    // Checkbox
     const inputCheckbox = document.createElement("input");
     inputCheckbox.type = "checkbox";
-    inputCheckbox.id = "checkbox-" + contador++;
+    inputCheckbox.checked = !!itemObj.feito;
 
+    // Texto do item
     const nomeItem = document.createElement("p");
-    nomeItem.innerText = inputItem.value;
+    nomeItem.innerText = itemObj.texto;
 
+    // Ações do checkbox
     inputCheckbox.addEventListener("click", function() {
-        if (inputCheckbox.checked) {
+        itemObj.feito = inputCheckbox.checked;
+        salvarListaNoLocalStorage(listaArray);
+        if(inputCheckbox.checked) {
             nomeItem.style.textDecoration = "line-through";
-            itemDaLista.style.color = "grey"
-            itemDaLista.style.transform = "scale(0.95)"
+            li.style.color = "grey";
+            li.style.transform = "scale(0.95)";
         } else {
-            nomeItem.style.textDecoration = "none"
-            itemDaLista.style.color = "black"
-            itemDaLista.style.transform = "scale(1)"
+            nomeItem.style.textDecoration = "none";
+            li.style.color = "black";
+            li.style.transform = "scale(1)";
         }
     });
 
-    // ------ AQUI: Botão de excluir ------
+    // Estiliza se carregado como feito
+    if(itemObj.feito) {
+        nomeItem.style.textDecoration = "line-through";
+        li.style.color = "grey";
+        li.style.transform = "scale(0.95)";
+    }
+
+    // Botão de excluir
     const botaoExcluir = document.createElement("button");
     botaoExcluir.innerText = "❌";
     botaoExcluir.classList.add("item-lista-button");
     botaoExcluir.title = "Excluir item";
-
     botaoExcluir.addEventListener("click", () => {
-        itemDaLista.remove();
-        verificarListaVazia(listaDeCompras); // Atualiza mensagem se a lista ficar vazia
+        listaArray.splice(indice, 1);
+        salvarListaNoLocalStorage(listaArray);
+        renderizarListaCompleta();
     });
 
-    // Criando o DOM (árvore genealógica) do nosso card de itens
-    containerItemDaLista.appendChild(inputCheckbox);
-    containerItemDaLista.appendChild(nomeItem);
-    containerItemDaLista.appendChild(botaoExcluir); // <-- adiciona botão !
-    itemDaLista.appendChild(containerItemDaLista);
+    // Monta as divs
+    leftContainer.appendChild(inputCheckbox);
+    leftContainer.appendChild(nomeItem);
 
-    const dataCompleta = gerarDiaDaSemana();
-    const itemData = document.createElement("p");
-    itemData.innerText = dataCompleta;
-    itemData.classList.add("texto-data")
-    itemDaLista.appendChild(itemData)
+    container.appendChild(leftContainer);
+    container.appendChild(botaoExcluir);
 
-    // Limpa o input
-    inputItem.value = "";
+    li.appendChild(container);
 
-    return itemDaLista;
+    // Data opcional
+    if(itemObj.data) {
+        const itemData = document.createElement("p");
+        itemData.innerText = itemObj.data;
+        itemData.classList.add("texto-data");
+        li.appendChild(itemData);
+    }
+
+    return li;
 }
